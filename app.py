@@ -94,7 +94,7 @@ with col1:
             st.warning("⚠️ Please enter a valid product description.")
         else:
             # Basic simulation: simple text-based lookup
-            matches = df[df["Product Name"].str.contains(user_input.split()[0], case=False, na=False)].head(3)
+            matches = df[df["Name"].str.contains(user_input.split()[0], case=False, na=False)].head(3)
             
             if len(matches) == 0:
                 st.error("No matching products found. Try with a broader or simpler keyword.")
@@ -112,7 +112,7 @@ with col1:
 
                     st.markdown(f"""
                     <div class='result-box {color_class}'>
-                        <b>🧾 Product:</b> {row['Product Name']}<br>
+                        <b>🧾 Product:</b> {row['Name']}<br>
                         <b>📦 Category:</b> {row['Category']}<br>
                         <b>🌱 Sustainability Score:</b> {score:.2f} / 100<br>
                         <b>🟢 Level:</b> {level}<br>
