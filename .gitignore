@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+models/*.pkl
+data/*.csv
+.DS_Store
+.ipynb_checkpoints/
+*.local
