@@ -18,7 +18,7 @@ def load_data():
     try:
         df = pd.read_csv("data/sustainable_Dataset_15000.csv")
     except:
-        df = pd.read_csv("sustainable_Dataset_4000.csv")
+        df = pd.read_csv("sustainable_Dataset_15000.csv")
     return df
 
 @st.cache_resource
@@ -102,7 +102,7 @@ with col1:
                 st.success(f"Found {len(matches)} similar products!")
 
                 for _, row in matches.iterrows():
-                    score = row["Sustainability Score"]
+                    score = row["Sustainability_Score"]
                     level = (
                         "High" if score >= 75 else
                         "Medium" if score >= 40 else
@@ -116,19 +116,19 @@ with col1:
                         <b>📦 Category:</b> {row['Category']}<br>
                         <b>🌱 Sustainability Score:</b> {score:.2f} / 100<br>
                         <b>🟢 Level:</b> {level}<br>
-                        <b>♻️ Alternative Suggestion:</b> {row.get('Sustainable Alternative', 'Not available')}
+                        <b>♻️ Alternative Suggestion:</b> {row.get('Sustainable_Alternative', 'Not available')}
                     </div>
                     """, unsafe_allow_html=True)
 
 with col2:
     st.subheader("📊 Quick Insights")
 
-    avg_score = df["Sustainability Score"].mean()
+    avg_score = df["Sustainability_Score"].mean()
     st.metric("Average Sustainability Score", f"{avg_score:.2f} / 100")
 
-    high_count = len(df[df["Sustainability Score"] >= 75])
-    med_count = len(df[(df["Sustainability Score"] < 75) & (df["Sustainability Score"] >= 40)])
-    low_count = len(df[df["Sustainability Score"] < 40])
+    high_count = len(df[df["Sustainability_Score"] >= 75])
+    med_count = len(df[(df["Sustainability_Score"] < 75) & (df["Sustainability_Score"] >= 40)])
+    low_count = len(df[df["Sustainability_Score"] < 40])
 
     st.write("### Distribution of Products")
     st.bar_chart(pd.DataFrame({
